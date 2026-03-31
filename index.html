@@ -1016,7 +1016,10 @@
         characterGroup.add(model);
         characterGroup.position.set(0, 0, 0);
 
-        console.log('Model loaded and positioned.');
+        const debugBox = new THREE.Box3().setFromObject(characterGroup);
+        const debugSize = debugBox.getSize(new THREE.Vector3());
+        const debugCenter = debugBox.getCenter(new THREE.Vector3());
+        console.log('Size:', JSON.stringify(debugSize), 'Center:', JSON.stringify(debugCenter));
 
         // Find head bone (common naming conventions)
         const headNames = ['head', 'Head', 'HEAD', 'mixamorigHead'];
