@@ -1014,7 +1014,8 @@
         const maxDim = Math.max(size.x, size.y, size.z);
         const scale = 8 / maxDim;
         model.scale.setScalar(scale);
-        model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+        model.rotation.x = -Math.PI / 2; // stand the model upright
+        model.position.set(-center.x * scale, -center.z * scale, center.y * scale);
 
         characterGroup.add(model);
 
