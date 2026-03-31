@@ -1050,8 +1050,9 @@
       },
       // ── onError ─────────────────────────────────────────────
       (err) => {
-        console.warn('Could not load GLTF model — using placeholder.', err);
-        loadingEl.style.display = 'none';
+        console.error('GLTF load error:', err);
+        loadingEl.textContent = 'Error: ' + (err && err.message ? err.message : JSON.stringify(err));
+        loadingEl.style.color = 'red';
         // Placeholder remains in scene; experience still works
       }
     );
