@@ -1011,7 +1011,7 @@
         // Mixamo FBX->GLB is Z-up and tiny (centimeter units)
         model.rotation.x = -Math.PI / 2;
         model.rotation.y = Math.PI;
-        model.scale.setScalar(0.05); // Mixamo characters are ~170cm = 1.7 units at this scale
+        model.scale.setScalar(0.5);
 
         characterGroup.add(model);
         characterGroup.position.set(0, -1, 0); // shift down so feet aren't at center
