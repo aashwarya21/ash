@@ -1009,8 +1009,8 @@
         const model = gltf.scene;
 
         // Mixamo FBX->GLB is Z-up and tiny (centimeter units)
-        model.rotation.x = Math.PI / 2;  // upright
-        model.rotation.y = 0;            // face forward
+        model.rotation.x = -Math.PI / 2; // convert Z-up (Blender) to Y-up (Three.js)
+        model.rotation.y = Math.PI;      // face forward (Mixamo faces -Z)
         model.scale.setScalar(5);
 
         characterGroup.add(model);
