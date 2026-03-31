@@ -1008,26 +1008,15 @@
 
         const model = gltf.scene;
 
-        // Rotate upright first (Mixamo FBX exports are Z-up)
+        // Mixamo FBX->GLB is Z-up and tiny (centimeter units)
         model.rotation.x = -Math.PI / 2;
-        model.rotation.y = Math.PI; // face forward
+        model.rotation.y = Math.PI;
+        model.scale.setScalar(0.05); // Mixamo characters are ~170cm = 1.7 units at this scale
 
         characterGroup.add(model);
+        characterGroup.position.set(0, -1, 0); // shift down so feet aren't at center
 
-        // Auto-scale and center AFTER adding to scene so transforms are applied
-        const box = new THREE.Box3().setFromObject(characterGroup);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 6 / maxDim;
-        model.scale.setScalar(scale);
-
-        // Re-center after scaling
-        const box2 = new THREE.Box3().setFromObject(characterGroup);
-        const center2 = box2.getCenter(new THREE.Vector3());
-        characterGroup.position.set(-center2.x, -center2.y, -center2.z);
-
-        console.log('Model loaded. Size after scale:', size, 'Scale:', scale);
+        console.log('Model loaded and positioned.');
 
         // Find head bone (common naming conventions)
         const headNames = ['head', 'Head', 'HEAD', 'mixamorigHead'];
