@@ -874,6 +874,7 @@
 
   let scene, camera, renderer;
   let characterGroup = null;   // persistent group — GSAP targets this
+  window._group = () => characterGroup; // debug helper
   let headBone       = null;   // bone or object to rotate toward mouse
   let mixer          = null;   // AnimationMixer for GLTF clips
   let mouse          = { x: 0, y: 0 };
