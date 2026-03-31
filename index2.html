@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aishwarya Sai K — IT Specialist v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --accentColor: #5eead4;
+    --backgroundColor: #0a0e17;
+    --vh: 100vh;
+    --textColor: #eae5ec;
+    --mutedColor: #8a8a9e;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: "Geist", sans-serif;
+  }
+
+  body {
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    font-family: "Geist", sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: var(--accentColor);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: screen;
+    opacity: 0.8;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--accentColor);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background: rgba(10, 14, 23, 0.7);
+    border-bottom: 1px solid rgba(94, 234, 212, 0.1);
+    transition: padding 0.3s;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accentColor);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem;
+    color: var(--mutedColor);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--accentColor);
+  }
+
+  .nav-cta {
+    font-size: 0.75rem;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--accentColor);
+    color: var(--accentColor);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover {
+    background: var(--accentColor);
+    color: var(--backgroundColor);
+  }
+
+  /* HERO SECTION */
+  .landing-section {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5rem 4rem;
+    gap: 4rem;
+    position: relative;
+    padding-top: 12rem;
+  }
+
+  .landing-container {
+    z-index: 10;
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accentColor);
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name span {
+    color: var(--accentColor);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--mutedColor);
+    max-width: 450px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accentColor);
+    color: var(--backgroundColor);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(94, 234, 212, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--textColor);
+    border: 1px solid var(--mutedColor);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accentColor);
+    color: var(--accentColor);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accentColor);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    color: var(--mutedColor);
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  /* CHARACTER SECTION */
+  .character-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+  }
+
+  .character-model {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  #character-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .character-rim {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(94, 234, 212, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    opacity: 0;
+  }
+
+  .character-hover {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  /* Model loading indicator */
+  #model-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accentColor);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    padding: 2rem 0;
+    border-top: 1px solid rgba(94, 234, 212, 0.1);
+    border-bottom: 1px solid rgba(94, 234, 212, 0.1);
+    overflow: hidden;
+    background: rgba(94, 234, 212, 0.02);
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mutedColor);
+  }
+
+  .marquee-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accentColor);
+    border-radius: 50%;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-section, .whatIDO, .career-section, .work-section, .contact-section {
+    scroll-margin-top: 100px;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    color: var(--accentColor);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--accentColor);
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .section-title .highlight {
+    color: var(--accentColor);
+  }
+
+  /* ABOUT SECTION */
+  .about-section {
+    padding: 8rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text {
+    color: var(--mutedColor);
+    line-height: 1.8;
+    font-weight: 300;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .skill-chip {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid rgba(94, 234, 212, 0.2);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--mutedColor);
+    text-transform: uppercase;
+    background: rgba(94, 234, 212, 0.03);
+    transition: all 0.2s;
+  }
+
+  .skill-chip:hover {
+    border-color: var(--accentColor);
+    color: var(--accentColor);
+    background: rgba(94, 234, 212, 0.08);
+  }
+
+  /* CAREER SECTION */
+  .career-section {
+    padding: 8rem 5rem;
+    background: rgba(94, 234, 212, 0.02);
+  }
+
+  .career-timeline {
+    /* FIX: was 10% — start at 0 so the reveal animation works */
+    max-height: 0;
+    overflow: hidden;
+    border-left: 2px solid var(--accentColor);
+    padding-left: 2rem;
+    margin-top: 3rem;
+  }
+
+  .career-info-box {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(94, 234, 212, 0.1);
+    /* FIX: removed opacity:0 here — GSAP sets this for .career-timeline items only */
+  }
+
+  .career-info-box:last-child {
+    border-bottom: none;
+  }
+
+  .career-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accentColor);
+    margin-bottom: 0.5rem;
+  }
+
+  .career-company {
+    font-size: 0.85rem;
+    color: var(--mutedColor);
+    margin-bottom: 1rem;
+  }
+
+  .career-description {
+    font-size: 0.9rem;
+    color: var(--mutedColor);
+    line-height: 1.6;
+  }
+
+  /* WHATIDO SECTION */
+  .whatIDO {
+    padding: 8rem 5rem;
+  }
+
+  .what-box-in {
+    /* FIX: was display:none — use opacity so GSAP can animate it */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    opacity: 0;
+  }
+
+  .what-card {
+    background: rgba(94, 234, 212, 0.05);
+    border: 1px solid rgba(94, 234, 212, 0.1);
+    padding: 2rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .what-card:hover {
+    border-color: var(--accentColor);
+    background: rgba(94, 234, 212, 0.1);
+  }
+
+  .what-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--textColor);
+    margin-bottom: 0.5rem;
+  }
+
+  .what-card-desc {
+    font-size: 0.9rem;
+    color: var(--mutedColor);
+    line-height: 1.6;
+  }
+
+  /* CONTACT SECTION */
+  .contact-section {
+    padding: 8rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-big {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 1.5rem 0;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid rgba(94, 234, 212, 0.1);
+    text-decoration: none;
+    color: var(--textColor);
+    transition: all 0.2s;
+  }
+
+  .contact-item:hover {
+    color: var(--accentColor);
+    padding-left: 0.5rem;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--accentColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accentColor);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 0.65rem;
+    color: var(--mutedColor);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 5rem;
+    border-top: 1px solid rgba(94, 234, 212, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(94, 234, 212, 0.02);
+    font-size: 0.65rem;
+    color: var(--mutedColor);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    color: var(--mutedColor);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--accentColor);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+
+    .landing-section, .about-section, .contact-section {
+      grid-template-columns: 1fr;
+      padding: 5rem 2rem;
+      gap: 3rem;
+    }
+
+    .about-section, .whatIDO, .career-section, .contact-section {
+      padding: 5rem 2rem;
+    }
+
+    .character-container { min-height: 400px; }
+    .skills-grid { grid-template-columns: 1fr; }
+
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">ASK</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#whatido">What I Do</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:aaishwarya388@gmail.com" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="landing-section">
+  <div class="landing-container">
+    <div class="hero-tag">Available for Opportunities</div>
+    <h1 class="hero-name">Aishwarya<br><span>Sai K.</span></h1>
+    <p class="hero-desc">
+      IT Specialist crafting reliable systems, resolving critical incidents, and leading high-performance teams. Based in Hyderabad. Currently at Kyndryl.
+    </p>
+    <div class="hero-actions">
+      <a href="#about" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">SLA Adherence</div>
+      </div>
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years XP</div>
+      </div>
+      <div>
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Incidents Led</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="character-container">
+    <div class="character-model" id="landingDiv">
+      <canvas id="character-canvas"></canvas>
+      <div class="character-rim"></div>
+      <div class="character-hover"></div>
+      <!-- Loading indicator — hidden once model loads -->
+      <div id="model-loading">Loading model…</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Incident Management <span class="marquee-dot"></span></div>
+    <div class="marquee-item">ITIL Framework <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Azure AD <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Active Directory <span class="marquee-dot"></span></div>
+    <div class="marquee-item">ServiceNow <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Team Leadership <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Problem Management <span class="marquee-dot"></span></div>
+    <div class="marquee-item">SLA Compliance <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Incident Management <span class="marquee-dot"></span></div>
+    <div class="marquee-item">ITIL Framework <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Azure AD <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Active Directory <span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="about-me">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Building reliable<br><span class="highlight">systems,</span></h2>
+    <p class="about-text">
+      I'm an IT Specialist with over 4 years of experience driving operational excellence in enterprise environments. At Kyndryl, I manage IT infrastructure for Luminor Bank across three countries.
+    </p>
+    <p class="about-text">
+      My edge is in connecting the dots — between teams, tools, and timelines — to turn incidents into learning moments and processes into competitive advantages.
+    </p>
+    <div class="skills-grid">
+      <div class="skill-chip">Incident Management</div>
+      <div class="skill-chip">ITIL Framework</div>
+      <div class="skill-chip">Azure AD</div>
+      <div class="skill-chip">Active Directory</div>
+      <div class="skill-chip">Team Leadership</div>
+      <div class="skill-chip">Stakeholder Mgmt</div>
+      <div class="skill-chip">Problem Solving</div>
+      <div class="skill-chip">Process Optimization</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label">Certifications</div>
+    <div style="margin-top: 2rem;">
+      <div class="career-info-box">
+        <div class="career-title">Agile Explorer</div>
+        <div class="career-company">IBM / Kyndryl</div>
+      </div>
+      <div class="career-info-box">
+        <div class="career-title">Major Incident Management</div>
+        <div class="career-company">2024 Certified</div>
+      </div>
+      <div class="career-info-box">
+        <div class="career-title">Problem Management</div>
+        <div class="career-company">2024 Certified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO SECTION -->
+<section class="whatIDO" id="whatido">
+  <div class="section-label">What I Do</div>
+  <h2 class="section-title">Driving <span class="highlight">Excellence</span></h2>
+
+  <div class="what-box-in">
+    <div class="what-card">
+      <div class="what-card-title">Incident Management</div>
+      <div class="what-card-desc">Lead critical incident resolution, ensuring minimal downtime and 98% SLA adherence across multinational clients.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-card-title">Infrastructure Support</div>
+      <div class="what-card-desc">Manage Active Directory, Azure AD, and enterprise tools, reducing provisioning times by 30%.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-card-title">Team Leadership</div>
+      <div class="what-card-desc">Mentor teams, streamline SOPs, and drive process improvements for operational efficiency.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER SECTION -->
+<section class="career-section" id="career">
+  <div class="section-label">Work Experience</div>
+  <h2 class="section-title">Where I've<br><span class="highlight">made impact</span></h2>
+
+  <div class="career-timeline">
+    <div class="career-info-box">
+      <div class="career-title">Kyndryl</div>
+      <div class="career-company">IT Specialist — Technical Support | Jun 2021 — Present</div>
+      <div class="career-description">
+        Achieved 98% SLA adherence managing IT support for Luminor Bank across Estonia, Latvia, and Lithuania. Led resolution of 100+ critical incidents, optimized access management, and maintained 98% CSAT score.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="contact">
+  <div>
+    <div class="section-label">Contact</div>
+    <h2 class="contact-big">Let's work<br><span class="highlight">together.</span></h2>
+    <p style="color: var(--mutedColor); font-size: 0.9rem; line-height: 1.7; margin-bottom: 2.5rem;">
+      Open to new opportunities and conversations about IT operations and service excellence.
+    </p>
+
+    <a href="mailto:aaishwarya388@gmail.com" class="contact-item">
+      <div class="contact-icon">✉</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">aaishwarya388@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+919177765219" class="contact-item">
+      <div class="contact-icon">☎</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 917-776-5219</div>
+      </div>
+    </a>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Hyderabad, India</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label">Message</div>
+    <form style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label style="font-size: 0.65rem; color: var(--mutedColor); letter-spacing: 0.1em; text-transform: uppercase;">Name</label>
+        <input type="text" placeholder="Your name" style="padding: 0.8rem; background: rgba(94, 234, 212, 0.05); border: 1px solid rgba(94, 234, 212, 0.1); color: var(--textColor); outline: none; transition: border-color 0.2s; font-family: inherit;">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label style="font-size: 0.65rem; color: var(--mutedColor); letter-spacing: 0.1em; text-transform: uppercase;">Email</label>
+        <input type="email" placeholder="your@email.com" style="padding: 0.8rem; background: rgba(94, 234, 212, 0.05); border: 1px solid rgba(94, 234, 212, 0.1); color: var(--textColor); outline: none; transition: border-color 0.2s; font-family: inherit;">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <label style="font-size: 0.65rem; color: var(--mutedColor); letter-spacing: 0.1em; text-transform: uppercase;">Message</label>
+        <textarea placeholder="Your message..." style="padding: 0.8rem; background: rgba(94, 234, 212, 0.05); border: 1px solid rgba(94, 234, 212, 0.1); color: var(--textColor); outline: none; min-height: 120px; resize: none; transition: border-color 0.2s; font-family: inherit;"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="handleFormSubmit(event)">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Aishwarya Sai K. Crafted with precision.</div>
+  <div class="footer-links">
+    <a href="#top">Top</a>
+    <a href="mailto:aaishwarya388@gmail.com">Email</a>
+    <a href="#career">Resume</a>
+  </div>
+</footer>
+
+<!-- Three.js core -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- GLTFLoader (not included in the core bundle) -->
+<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ===== CUSTOM CURSOR =====
+  const cursor    = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = -100, mouseY = -100;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 6}px, ${mouseY - 6}px)`;
+  });
+
+  gsap.to(cursorRing, {
+    x: () => mouseX - 20,
+    y: () => mouseY - 20,
+    duration: 0.3,
+    overwrite: 'auto',
+    repeat: -1,
+    repeatRefresh: true,
+  });
+
+  document.querySelectorAll('a, button, input, textarea, .skill-chip, .what-card').forEach((el) => {
+    el.addEventListener('mouseenter', () => {
+      gsap.to(cursorRing, { scale: 2,   opacity: 0.3, duration: 0.2 });
+      gsap.to(cursor,     { scale: 1.5,               duration: 0.2 });
+    });
+    el.addEventListener('mouseleave', () => {
+      gsap.to(cursorRing, { scale: 1,   opacity: 0.5, duration: 0.2 });
+      gsap.to(cursor,     { scale: 1,                 duration: 0.2 });
+    });
+  });
+
+  // ===== 3D SCENE =====
+  const canvas         = document.getElementById('character-canvas');
+  const canvasContainer = canvas.parentElement;
+
+  let scene, camera, renderer;
+  let characterGroup = null;   // persistent group — GSAP targets this
+  window._group = () => characterGroup; // debug helper
+  let headBone       = null;   // bone or object to rotate toward mouse
+  let mixer          = null;   // AnimationMixer for GLTF clips
+  let mouse          = { x: 0, y: 0 };
+
+  function buildPlaceholder() {
+    // Simple torus-knot as a stand-in until the real model loads
+    const geo = new THREE.TorusKnotGeometry(1, 0.35, 128, 16);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x5eead4,
+      roughness: 0.4,
+      metalness: 0.6,
+      emissive: 0x5eead4,
+      emissiveIntensity: 0.08,
+    });
+    return new THREE.Mesh(geo, mat);
+  }
+
+  function initScene() {
+    const w = canvasContainer.clientWidth;
+    const h = canvasContainer.clientHeight;
+
+    scene = new THREE.Scene();
+    scene.background = null;
+
+    camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
+    camera.position.set(0, 0, 20);
+    camera.lookAt(0, 0, 0);
+    camera.zoom = 1;
+    camera.updateProjectionMatrix();
+
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1;
+
+    // Lighting
+    const dirLight = new THREE.DirectionalLight(0x5eead4, 0.8);
+    dirLight.position.set(-0.47, -0.32, -1);
+    dirLight.castShadow = true;
+    scene.add(dirLight);
+
+    const pointLight = new THREE.PointLight(0x22d3ee, 5, 100);
+    pointLight.position.set(3, 12, 4);
+    pointLight.castShadow = true;
+    scene.add(pointLight);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+
+    // Persistent group that GSAP animates — we swap children inside
+    characterGroup = new THREE.Group();
+    scene.add(characterGroup);
+
+    const placeholder = buildPlaceholder();
+    characterGroup.add(placeholder);
+    headBone = characterGroup; // track whole group until real bones are found
+
+    // Load real model — falls back to placeholder on error
+    loadGLTFModel('/ash/models/character.glb', placeholder);
+
+    // Animate
+    const clock = new THREE.Clock();
+    (function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsed = clock.getElapsedTime();
+      const delta   = clock.getDelta ? 0.016 : 0.016; // kept simple; mixer uses fixed delta
+
+      // AnimationMixer tick
+      if (mixer) mixer.update(0.016);
+
+      // Mouse-driven head rotation (only in hero viewport)
+      if (headBone && window.scrollY < window.innerHeight * 0.8) {
+        const maxY = Math.PI / 6;
+        characterGroup.rotation.y += (mouse.x * maxY - characterGroup.rotation.y) * 0.05;
+      }
+
+      // Idle float
+      characterGroup.position.y = Math.sin(elapsed * 0.5) * 0.05;
+      characterGroup.rotation.z = Math.sin(elapsed * 0.3) * 0.005;
+
+      renderer.render(scene, camera);
+    })();
+
+    // Input tracking
+    document.addEventListener('mousemove', (e) => {
+      mouse.x =  (e.clientX / window.innerWidth)  * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+    document.addEventListener('touchmove', (e) => {
+      if (e.touches[0]) {
+        mouse.x =  (e.touches[0].clientX / window.innerWidth)  * 2 - 1;
+        mouse.y = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+      }
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      const nw = canvasContainer.clientWidth;
+      const nh = canvasContainer.clientHeight;
+      camera.aspect = nw / nh;
+      camera.updateProjectionMatrix();
+      renderer.setSize(nw, nh);
+    });
+  }
+
+  // ===== GLTF MODEL LOADER =====
+  // Place your .glb file at /public/models/character.glb
+  // (or adjust the path below to match your setup)
+  function loadGLTFModel(path, placeholder) {
+    if (typeof THREE.GLTFLoader === 'undefined') {
+      console.warn('GLTFLoader not available — using placeholder.');
+      document.getElementById('model-loading').style.display = 'none';
+      return;
+    }
+
+    const loader    = new THREE.GLTFLoader();
+    const loadingEl = document.getElementById('model-loading');
+
+    loader.load(
+      path,
+      // ── onLoad ──────────────────────────────────────────────
+      (gltf) => {
+        loadingEl.style.display = 'none';
+
+        // Remove placeholder
+        characterGroup.remove(placeholder);
+        if (placeholder.geometry) placeholder.geometry.dispose();
+        if (placeholder.material) placeholder.material.dispose();
+
+        const model = gltf.scene;
+
+        // Mixamo FBX->GLB is Z-up and tiny (centimeter units)
+        model.rotation.set(Math.PI / 2, Math.PI, 0);
+        model.scale.setScalar(8); // 0.7 * 8 = ~5.6 units tall, fits in camera view
+        characterGroup.rotation.set(0, 0, 0);
+        characterGroup.position.set(0, -2, 0); // shift down so full body is visible
+
+        characterGroup.add(model);
+        characterGroup.position.set(0, 0, 0);
+
+        const debugBox = new THREE.Box3().setFromObject(characterGroup);
+        const debugSize = debugBox.getSize(new THREE.Vector3());
+        const debugCenter = debugBox.getCenter(new THREE.Vector3());
+        console.log('Size:', JSON.stringify(debugSize), 'Center:', JSON.stringify(debugCenter));
+
+        // Find head bone (common naming conventions)
+        const headNames = ['head', 'Head', 'HEAD', 'mixamorigHead'];
+        model.traverse((node) => {
+          if (!headBone || headBone === characterGroup) {
+            if (node.isBone && headNames.some(n => node.name.includes(n))) {
+              headBone = node;
+            }
+          }
+        });
+        // Fall back to the whole group if no head bone found
+        if (headBone === characterGroup) {
+          console.info('No head bone found — rotating full model toward mouse.');
+        }
+
+        // Play idle animation if available
+        if (gltf.animations && gltf.animations.length > 0) {
+          mixer = new THREE.AnimationMixer(model);
+          const idleClip = gltf.animations.find(a =>
+            /idle/i.test(a.name)
+          ) || gltf.animations[0];
+          mixer.clipAction(idleClip).play();
+        }
+      },
+      // ── onProgress ──────────────────────────────────────────
+      (progress) => {
+        if (progress.total > 0) {
+          const pct = Math.round((progress.loaded / progress.total) * 100);
+          loadingEl.textContent = `Loading model… ${pct}%`;
+        }
+      },
+      // ── onError ─────────────────────────────────────────────
+      (err) => {
+        console.error('GLTF load error:', err);
+        loadingEl.textContent = 'Error: ' + (err && err.message ? err.message : JSON.stringify(err));
+        loadingEl.style.color = 'red';
+        // Placeholder remains in scene; experience still works
+      }
+    );
+  }
+
+  // ===== GSAP SCROLL ANIMATIONS =====
+  function initScrollAnimations() {
+    // Set initial states for animated elements
+    gsap.set('.what-card', { opacity: 0, y: 30 });
+    gsap.set('.career-timeline .career-info-box', { opacity: 0, y: 20 });
+
+    // Hero → About scroll
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.landing-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        invalidateOnRefresh: true,
+      }
+    })
+    .to(characterGroup.rotation, { y: 0.7, x: 0 }, 0)
+    .to(camera.position, { z: 22 }, 0)
+    .to('.character-model', { x: '-25%' }, 0)
+    .to('.landing-container', { opacity: 0 }, 0)
+    .to('.character-rim', { opacity: 1, scale: 1.2 }, 0);
+
+    // About section
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.about-section',
+        start: 'top center',
+        end: 'bottom top',
+        scrub: true,
+        invalidateOnRefresh: true,
+      }
+    })
+    .to(camera.position, { z: 75, y: 8.4 }, 0)
+    .to(characterGroup.rotation, { y: 0.92, x: 0 }, 0)
+    .to('.character-model', { pointerEvents: 'none', x: '-12%' }, 0)
+    .to('.character-rim', { opacity: 0, scale: 0 }, 0);
+
+    // What I Do — FIX: use toggleActions (not scrub) so stagger works cleanly
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.whatIDO',
+        start: 'top 70%',
+        end: 'center center',
+        toggleActions: 'play none none reverse',
+      }
+    })
+    .to('.what-box-in', { opacity: 1, duration: 0.4 }, 0)
+    .to('.what-card',   { opacity: 1, y: 0, stagger: 0.15, duration: 0.5 }, 0.1);
+
+    // Career timeline — FIX: start max-height at 0, animate to full height
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.career-section',
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 1,
+      }
+    })
+    .to('.career-timeline', { maxHeight: '2000px', duration: 1 }, 0)
+    .to('.career-timeline .career-info-box', { opacity: 1, y: 0, stagger: 0.2 }, 0);
+
+    // Navbar shrink on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.padding =
+        window.scrollY > 50 ? '0.8rem 3rem' : '1.5rem 3rem';
+    });
+  }
+
+  // ===== FORM =====
+  function handleFormSubmit(event) {
+    const btn = event.target;
+    const original = btn.textContent;
+    btn.textContent       = 'Message Sent ✓';
+    btn.style.background  = '#22d3ee';
+    setTimeout(() => {
+      btn.textContent      = original;
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // ===== INIT — single entry point, no duplicate calls =====
+  window.addEventListener('load', () => {
+    initScene();
+    initScrollAnimations();
+  });
+</script>
+</body>
+</html>
