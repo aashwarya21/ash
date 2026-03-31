@@ -1009,6 +1009,7 @@
 
         // Rotate upright first (Mixamo FBX exports are Z-up)
         model.rotation.x = -Math.PI / 2;
+        model.rotation.z = Math.PI; // face forward
 
         characterGroup.add(model);
 
