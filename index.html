@@ -898,9 +898,9 @@
     scene = new THREE.Scene();
     scene.background = null;
 
-    camera = new THREE.PerspectiveCamera(14.5, w / h, 0.1, 1000);
-    camera.position.set(0, 13.1, 24.7);
-    camera.zoom = 1.1;
+    camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
+    camera.position.set(0, 0, 20);
+    camera.zoom = 1;
     camera.updateProjectionMatrix();
 
     renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
@@ -1006,6 +1006,16 @@
         if (placeholder.material) placeholder.material.dispose();
 
         const model = gltf.scene;
+
+        // Auto-scale and center the model to fit the viewport
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 8 / maxDim;
+        model.scale.setScalar(scale);
+        model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+
         characterGroup.add(model);
 
         // Find head bone (common naming conventions)
