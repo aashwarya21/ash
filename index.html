@@ -1018,6 +1018,9 @@
 
         characterGroup.add(model);
 
+        // Debug: log model info
+        console.log('Model loaded. Size:', size, 'Scale applied:', scale, 'Camera Z:', camera.position.z);
+
         // Find head bone (common naming conventions)
         const headNames = ['head', 'Head', 'HEAD', 'mixamorigHead'];
         model.traverse((node) => {
