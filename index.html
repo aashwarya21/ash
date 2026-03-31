@@ -1007,20 +1007,25 @@
 
         const model = gltf.scene;
 
-        // Auto-scale and center the model to fit the viewport
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 8 / maxDim;
-        model.scale.setScalar(scale);
-        model.rotation.x = -Math.PI / 2; // stand the model upright
-        model.position.set(-center.x * scale, -center.z * scale, center.y * scale);
+        // Rotate upright first (Mixamo FBX exports are Z-up)
+        model.rotation.x = -Math.PI / 2;
 
         characterGroup.add(model);
 
-        // Debug: log model info
-        console.log('Model loaded. Size:', size, 'Scale applied:', scale, 'Camera Z:', camera.position.z);
+        // Auto-scale and center AFTER adding to scene so transforms are applied
+        const box = new THREE.Box3().setFromObject(characterGroup);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 6 / maxDim;
+        model.scale.setScalar(scale);
+
+        // Re-center after scaling
+        const box2 = new THREE.Box3().setFromObject(characterGroup);
+        const center2 = box2.getCenter(new THREE.Vector3());
+        characterGroup.position.set(-center2.x, -center2.y, -center2.z);
+
+        console.log('Model loaded. Size after scale:', size, 'Scale:', scale);
 
         // Find head bone (common naming conventions)
         const headNames = ['head', 'Head', 'HEAD', 'mixamorigHead'];
