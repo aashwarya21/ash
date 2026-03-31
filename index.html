@@ -899,7 +899,7 @@
     scene.background = null;
 
     camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
-    camera.position.set(0, 2, 20);
+    camera.position.set(0, 0, 20);
     camera.lookAt(0, 0, 0);
     camera.zoom = 1;
     camera.updateProjectionMatrix();
@@ -1009,12 +1009,12 @@
         const model = gltf.scene;
 
         // Mixamo FBX->GLB is Z-up and tiny (centimeter units)
-        model.rotation.x = -Math.PI / 2; // convert Z-up (Blender) to Y-up (Three.js)
-        model.rotation.y = Math.PI;      // face forward (Mixamo faces -Z)
+        model.rotation.set(0, 0, 0);
         model.scale.setScalar(5);
+        characterGroup.rotation.set(Math.PI / 2, Math.PI, 0);
 
         characterGroup.add(model);
-        characterGroup.position.set(0, -1, 0); // shift down so feet aren't at center
+        characterGroup.position.set(0, 0, 0);
 
         console.log('Model loaded and positioned.');
 
