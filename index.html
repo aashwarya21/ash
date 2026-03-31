@@ -949,9 +949,7 @@
       // Mouse-driven head rotation (only in hero viewport)
       if (headBone && window.scrollY < window.innerHeight * 0.8) {
         const maxY = Math.PI / 6;
-        headBone.rotation.y += (mouse.x * maxY - headBone.rotation.y) * 0.1;
-        const targetX = -Math.max(Math.min(mouse.y, 0.4), -0.3) - maxY * 0.5;
-        headBone.rotation.x += (targetX - headBone.rotation.x) * 0.08;
+        characterGroup.rotation.y += (mouse.x * maxY - characterGroup.rotation.y) * 0.05;
       }
 
       // Idle float
@@ -1010,9 +1008,9 @@
         const model = gltf.scene;
 
         // Mixamo FBX->GLB is Z-up and tiny (centimeter units)
-        model.rotation.set(0, 0, 0);
-        model.scale.setScalar(5);
-        characterGroup.rotation.set(Math.PI / 2, Math.PI, 0);
+        model.rotation.set(Math.PI / 2, Math.PI, 0); // correct for Blender->Mixamo->Three.js
+        model.scale.setScalar(80);
+        characterGroup.rotation.set(0, 0, 0);
 
         characterGroup.add(model);
         characterGroup.position.set(0, 0, 0);
@@ -1078,7 +1076,7 @@
         invalidateOnRefresh: true,
       }
     })
-    .to(characterGroup.rotation, { y: 0.7 }, 0)
+    .to(characterGroup.rotation, { y: 0.7, x: 0 }, 0)
     .to(camera.position, { z: 22 }, 0)
     .to('.character-model', { x: '-25%' }, 0)
     .to('.landing-container', { opacity: 0 }, 0)
@@ -1095,7 +1093,7 @@
       }
     })
     .to(camera.position, { z: 75, y: 8.4 }, 0)
-    .to(characterGroup.rotation, { y: 0.92, x: 0.12 }, 0)
+    .to(characterGroup.rotation, { y: 0.92, x: 0 }, 0)
     .to('.character-model', { pointerEvents: 'none', x: '-12%' }, 0)
     .to('.character-rim', { opacity: 0, scale: 0 }, 0);
 
