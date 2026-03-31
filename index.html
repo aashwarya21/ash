@@ -899,7 +899,8 @@
     scene.background = null;
 
     camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
-    camera.position.set(0, 0, 20);
+    camera.position.set(0, 2, 20);
+    camera.lookAt(0, 0, 0);
     camera.zoom = 1;
     camera.updateProjectionMatrix();
 
@@ -1009,7 +1010,7 @@
 
         // Rotate upright first (Mixamo FBX exports are Z-up)
         model.rotation.x = -Math.PI / 2;
-        model.rotation.z = Math.PI; // face forward
+        model.rotation.y = Math.PI; // face forward
 
         characterGroup.add(model);
 
