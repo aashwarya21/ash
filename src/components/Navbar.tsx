@@ -19,10 +19,8 @@ const Navbar = () => {
       autoResize: true,
       ignoreMobileResize: true,
     });
-
     smoother.scrollTop(0);
     smoother.paused(true);
-
     let links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
@@ -35,44 +33,20 @@ const Navbar = () => {
         }
       });
     });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
+    window.addEventListener("resize", () => { ScrollSmoother.refresh(true); });
   }, []);
+
   return (
     <>
       <div className="header">
-        <a href="/#" className="navbar-title" data-cursor="disable">
-          AM
-        </a>
-        <a
-          href="https://www.linkedin.com/in/akashrmalhotra/"
-          className="navbar-connect"
-          data-cursor="disable"
-          target="_blank"
-          rel="noreferrer"
-        >
-          linkedin.com/in/akashrmalhotra
-        </a>
+        <a href="/#" className="navbar-title" data-cursor="disable">ASK.</a>
+        <a href="mailto:aaishwarya388@gmail.com" className="navbar-connect" data-cursor="disable">aaishwarya388@gmail.com</a>
         <ul>
-          <li>
-            <a data-href="#about" href="#about">
-              <HoverLinks text="ABOUT" />
-            </a>
-          </li>
-          <li>
-            <a data-href="#work" href="#work">
-              <HoverLinks text="WORK" />
-            </a>
-          </li>
-          <li>
-            <a data-href="#contact" href="#contact">
-              <HoverLinks text="CONTACT" />
-            </a>
-          </li>
+          <li><a data-href="#about" href="#about"><HoverLinks text="ABOUT" /></a></li>
+          <li><a data-href="#work" href="#work"><HoverLinks text="WORK" /></a></li>
+          <li><a data-href="#contact" href="#contact"><HoverLinks text="CONTACT" /></a></li>
         </ul>
       </div>
-
       <div className="landing-circle1"></div>
       <div className="landing-circle2"></div>
       <div className="nav-fade"></div>

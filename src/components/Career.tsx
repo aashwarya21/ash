@@ -15,58 +15,49 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Co-Founder</h4>
-                <h5>CallHQ.ai</h5>
+                <h4>IT Specialist</h4>
+                <h5>Kyndryl · Hyderabad</h5>
               </div>
               <h3>NOW</h3>
             </div>
             <p>
-              Building CallHQ.ai, a voice AI platform for
-              automating customer calls, support, and conversions.
+              Managing IT support for Luminor Bank across Estonia, Latvia, and
+              Lithuania. Achieved 98% SLA adherence and 98% CSAT score. Led
+              resolution of 100+ critical incidents, optimized access management
+              via Active Directory and Azure AD reducing provisioning times by
+              30%, and mentored new team members on ServiceNow and incident SOPs.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Adobe</h4>
-                <h5>6+ years · Noida</h5>
+                <h4>Key Achievements</h4>
+                <h5>Kyndryl</h5>
               </div>
-              <h3>2017–24</h3>
+              <h3>2021–24</h3>
             </div>
             <p>
-              Senior Lead Software Engineer (Feb 2024 – May 2024). Lead Software
-              Engineer (Feb 2021 – Feb 2024). Software Engineer II (Dec 2017 –
-              Feb 2021): internationalization, globalization, and localization for
-              Adobe Technical Communication Suite; functional and linguistic testing
-              strategy; in-house tooling; collaboration with product and engineering
-              for high-quality localized releases.
+              Reduced average incident resolution time by 25% through SOP
+              optimization and cross-team collaboration. Minimized service
+              restoration time by 20% by leading multi-vendor escalations.
+              Created troubleshooting guides that improved resolution efficiency
+              by 30%. Collaborated with vendors to implement process improvements
+              enhancing overall system reliability.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Consultant</h4>
-                <h5>Genpact Headstrong </h5>
+                <h4>B.Tech CSE</h4>
+                <h5>Malla Reddy Engineering College</h5>
               </div>
-              <h3>2016–17</h3>
+              <h3>2016–20</h3>
             </div>
             <p>
-              Sep 2016 – Nov 2017. Developed and maintained WCF services consumed
-              by the UI; deployment support across environments; NUnit tests and
-              coverage; bug fixes from QA and users; database work.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Sf Engineer</h4>
-                <h5>Infogain</h5>
-              </div>
-              <h3>2013-16</h3>
-            </div>
-            <p>
-              Software engineering across enterprise projects, contributing to
-              design, development, and delivery of business applications.
+              Bachelor of Technology in Computer Science Engineering with a CGPA
+              of 8.03. Built a strong foundation in software systems, networking,
+              and computer science fundamentals that underpins my work in
+              enterprise IT infrastructure and incident management.
             </p>
           </div>
         </div>

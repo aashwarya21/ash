@@ -11,18 +11,67 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+// Aishwarya's IT skills as colored spheres with labels
+const skillColors = [
+  "#5eead4", // teal - ServiceNow
+  "#c8ff57", // lime - ITIL
+  "#a78bfa", // purple - Azure AD
+  "#fb923c", // orange - Active Directory
+  "#38bdf8", // sky - Incident Mgmt
+  "#f472b6", // pink - Team Leadership
+  "#4ade80", // green - SLA
+  "#facc15", // yellow - Problem Mgmt
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+
+const textureLoader = new THREE.TextureLoader();
+
+// Create canvas textures with skill names
+function createSkillTexture(text: string, color: string): THREE.Texture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext("2d")!;
+
+  // Background circle
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(128, 128, 120, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Text
+  ctx.fillStyle = "#0a0e17";
+  ctx.font = "bold 28px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  // Word wrap for long names
+  const words = text.split(" ");
+  if (words.length === 1) {
+    ctx.fillText(text, 128, 128);
+  } else {
+    const mid = Math.ceil(words.length / 2);
+    ctx.fillText(words.slice(0, mid).join(" "), 128, 108);
+    ctx.fillText(words.slice(mid).join(" "), 128, 148);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
+const skills = [
+  "ServiceNow",
+  "ITIL",
+  "Azure AD",
+  "Active Directory",
+  "Incident Mgmt",
+  "Team Leadership",
+  "SLA Compliance",
+  "Problem Mgmt",
+  "Teito",
+  "A1 Dragon",
+  "Stakeholder Mgmt",
+  "Process Optimization",
+];
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
@@ -60,7 +109,6 @@ function SphereGeo({
           -50 * delta * scale
         )
       );
-
     api.current?.applyImpulse(impulse, true);
   });
 
@@ -98,7 +146,6 @@ type PointerProps = {
 
 function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   const ref = useRef<RapierRigidBody>(null);
-
   useFrame(({ pointer, viewport }) => {
     if (!isActive) return;
     const targetVec = vec.lerp(
@@ -111,14 +158,8 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
     );
     ref.current?.setNextKinematicTranslation(targetVec);
   });
-
   return (
-    <RigidBody
-      position={[100, 100, 100]}
-      type="kinematicPosition"
-      colliders={false}
-      ref={ref}
-    >
+    <RigidBody position={[100, 100, 100]} type="kinematicPosition" colliders={false} ref={ref}>
       <BallCollider args={[2]} />
     </RigidBody>
   );
@@ -129,47 +170,41 @@ const TechStack = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const workEl = document.getElementById("work");
+      if (!workEl) return;
+      const threshold = workEl.getBoundingClientRect().top;
+      setIsActive(window.scrollY > threshold);
     };
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
       element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
+        const interval = setInterval(() => { handleScroll(); }, 10);
+        setTimeout(() => { clearInterval(interval); }, 1000);
       });
     });
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
+
   const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
-        new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
-        })
-    );
+    return skills.map((skill, i) => {
+      const color = skillColors[i % skillColors.length];
+      const texture = createSkillTexture(skill, color);
+      return new THREE.MeshPhysicalMaterial({
+        map: texture,
+        emissive: color,
+        emissiveMap: texture,
+        emissiveIntensity: 0.2,
+        metalness: 0.3,
+        roughness: 0.8,
+        clearcoat: 0.1,
+      });
+    });
   }, []);
 
   return (
     <div className="techstack">
-      <h2> My Techstack</h2>
-
+      <h2>My Skillset</h2>
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
@@ -178,14 +213,7 @@ const TechStack = () => {
         className="tech-canvas"
       >
         <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
+        <spotLight position={[20, 20, 25]} penumbra={1} angle={0.2} color="white" castShadow shadow-mapSize={[512, 512]} />
         <directionalLight position={[0, 5, -4]} intensity={2} />
         <Physics gravity={[0, 0, 0]}>
           <Pointer isActive={isActive} />
@@ -198,11 +226,7 @@ const TechStack = () => {
             />
           ))}
         </Physics>
-        <Environment
-          files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
+        <Environment files="/models/char_enviorment.hdr" environmentIntensity={0.5} environmentRotation={[0, 4, 2]} />
         <EffectComposer enableNormalPass={false}>
           <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
         </EffectComposer>

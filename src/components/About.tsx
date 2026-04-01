@@ -6,11 +6,14 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          I am currently co-founder of CallHQ.ai, building real-time voice AI for
-          businesses. I am a technologist at heart with strong business judgment—
-          I enjoy going from product strategy to hands-on engineering. My background
-          spans leadership at Adobe, founding Broki and CallHQ, and shipping
-          full-stack products end to end.
+          I am an IT Specialist at Kyndryl with 4+ years of experience in
+          incident management, client support, and process optimization. I
+          currently manage enterprise IT infrastructure for Luminor Bank across
+          Estonia, Latvia, and Lithuania — maintaining 98% SLA adherence and a
+          98% CSAT score. My background spans Active Directory, Azure AD,
+          ServiceNow, and ITIL frameworks, with a strong track record of leading
+          critical incident resolutions, mentoring teams, and driving measurable
+          operational improvements.
         </p>
       </div>
     </div>

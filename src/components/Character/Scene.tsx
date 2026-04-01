@@ -38,17 +38,13 @@ const Scene = () => {
       canvasDiv.current.appendChild(renderer.domElement);
 
       const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
-      camera.position.z = 10;
       camera.position.set(0, 13.1, 24.7);
       camera.zoom = 1.1;
       camera.updateProjectionMatrix();
 
       let headBone: THREE.Object3D | null = null;
-      let screenLight: any | null = null;
       let mixer: THREE.AnimationMixer;
-
       const clock = new THREE.Clock();
-
       const light = setLighting(scene);
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
@@ -60,9 +56,38 @@ const Scene = () => {
           mixer = animations.mixer;
           let character = gltf.scene;
           setChar(character);
+
+          // Auto-fit: measure character and scale to match original camera
+          const box = new THREE.Box3().setFromObject(character);
+          const size = box.getSize(new THREE.Vector3());
+          const center = box.getCenter(new THREE.Vector3());
+
+          // Scale so character is ~10 units tall (matches original camera setup)
+          const targetHeight = 10;
+          const scale = targetHeight / size.y;
+          character.scale.setScalar(scale);
+
+          // After scaling, re-measure
+          const box2 = new THREE.Box3().setFromObject(character);
+          const center2 = box2.getCenter(new THREE.Vector3());
+          const size2 = box2.getSize(new THREE.Vector3());
+
+          // Position character: center horizontally, align bottom to camera view
+          // camera is at y=13.1 so we want character top ~at y=13
+          character.position.set(
+            -center2.x,
+            13.1 - center2.y - size2.y * 0.15,
+            -center2.z
+          );
+
           scene.add(character);
-          headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
+
+          headBone =
+            character.getObjectByName("mixamorigHead") ||
+            character.getObjectByName("mixamorigNeck") ||
+            character.getObjectByName("Head") ||
+            null;
+
           progress.loaded().then(() => {
             setTimeout(() => {
               light.turnOnLights();
@@ -90,7 +115,6 @@ const Scene = () => {
           );
         }, 200);
       };
-
       const onTouchEnd = () => {
         handleTouchEnd((x, y, interpolationX, interpolationY) => {
           mouse = { x, y };
@@ -98,14 +122,13 @@ const Scene = () => {
         });
       };
 
-      document.addEventListener("mousemove", (event) => {
-        onMouseMove(event);
-      });
+      document.addEventListener("mousemove", (event) => { onMouseMove(event); });
       const landingDiv = document.getElementById("landingDiv");
       if (landingDiv) {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+
       const animate = () => {
         requestAnimationFrame(animate);
         if (headBone) {
@@ -117,15 +140,13 @@ const Scene = () => {
             interpolation.y,
             THREE.MathUtils.lerp
           );
-          light.setPointLight(screenLight);
         }
         const delta = clock.getDelta();
-        if (mixer) {
-          mixer.update(delta);
-        }
+        if (mixer) { mixer.update(delta); }
         renderer.render(scene, camera);
       };
       animate();
+
       return () => {
         clearTimeout(debounce);
         scene.clear();
