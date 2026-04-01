@@ -17,6 +17,7 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Certifications</h4>
             <a href="#" data-cursor="disable" className="contact-social">Agile Explorer <MdArrowOutward /></a>
+            <a href="#" data-cursor="disable" className="contact-social">ITIL Foundation <MdArrowOutward /></a>
             <a href="#" data-cursor="disable" className="contact-social">Principles of Major Incident Management 2024 <MdArrowOutward /></a>
             <a href="#" data-cursor="disable" className="contact-social">Principles of Problem Management 2024 <MdArrowOutward /></a>
           </div>
