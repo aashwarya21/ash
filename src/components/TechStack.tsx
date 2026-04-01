@@ -23,7 +23,6 @@ const skillColors = [
   "#facc15", // yellow - Problem Mgmt
 ];
 
-const textureLoader = new THREE.TextureLoader();
 
 // Create canvas textures with skill names
 function createSkillTexture(text: string, color: string): THREE.Texture {

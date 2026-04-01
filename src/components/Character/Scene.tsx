@@ -60,7 +60,7 @@ const Scene = () => {
           // Auto-fit: measure character and scale to match original camera
           const box = new THREE.Box3().setFromObject(character);
           const size = box.getSize(new THREE.Vector3());
-          const center = box.getCenter(new THREE.Vector3());
+          box.getCenter(new THREE.Vector3());
 
           // Scale so character is ~10 units tall (matches original camera setup)
           const targetHeight = 10;
