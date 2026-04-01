@@ -76,7 +76,7 @@ const Scene = () => {
           // camera is at y=13.1 so we want character top ~at y=13
           character.position.set(
             -center2.x,
-            13.1 - center2.y + size2.y * 0.05,
+            13.1 - center2.y + size2.y * 0.22,
             -center2.z
           );
 
