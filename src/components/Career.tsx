@@ -18,7 +18,7 @@ const Career = () => {
                 <h4>IT Specialist</h4>
                 <h5>Kyndryl · Hyderabad</h5>
               </div>
-              <h3>NOW</h3>
+              <h3>Aug 2025</h3>
             </div>
             <p>
               Managing IT support for Luminor Bank across Estonia, Latvia, and
