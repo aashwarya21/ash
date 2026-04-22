@@ -60,7 +60,6 @@ const Scene = () => {
           // Auto-fit: measure character and scale to match original camera
           const box = new THREE.Box3().setFromObject(character);
           const size = box.getSize(new THREE.Vector3());
-          box.getCenter(new THREE.Vector3());
 
           // Scale so character is ~10 units tall (matches original camera setup)
           const targetHeight = 10;
@@ -72,13 +71,19 @@ const Scene = () => {
           const center2 = box2.getCenter(new THREE.Vector3());
           const size2 = box2.getSize(new THREE.Vector3());
 
-          // Position character: center horizontally, align bottom to camera view
-          // camera is at y=13.1 so we want character top ~at y=13
+          // Position character: center horizontally, seat top of bounding box
+          // just below camera level so the full figure fits the narrow FOV.
           character.position.set(
             -center2.x,
-            13.1 - center2.y - size2.y * 0.05,
+            13.1 - center2.y - size2.y * 0.35,
             -center2.z
           );
+
+          // Aim the camera at the character's face/upper-body rather than the
+          // world origin (0,0,0). Without this the default lookAt points at the
+          // floor and the face is clipped above the frustum.
+          const faceCenterY = character.position.y + center2.y + size2.y * 0.18;
+          camera.lookAt(0, faceCenterY, 0);
 
           scene.add(character);
 
